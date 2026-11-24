@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday Tahzeeb</title>
+  <meta name="description" content="A little 3D birthday surprise for Tahzeeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff5d8f;
+      --pink-dark: #e0457b;
+      --deep: #6b1d3f;
+      --gutter: 16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(180deg, #ffe3ee 0%, #ffc2d9 45%, #f78fb3 100%);
+      background-attachment: fixed;
+      font-family: 'Quicksand', system-ui, sans-serif;
+      color: var(--deep);
+    }
+
+    /* ---------- HERO (3D) ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+    .hero canvas {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      touch-action: manipulation;
+    }
+    .msg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: clamp(20px, 5vh, 60px);
+      text-align: center;
+      pointer-events: none;
+      padding: 0 var(--gutter);
+    }
+    .msg h1 {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: clamp(34px, 9vw, 72px);
+      line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 4px 0 var(--pink-dark), 0 8px 24px rgba(107, 29, 63, 0.35);
+      animation: bob 3s ease-in-out infinite;
+    }
+    .msg h1 span { display: block; font-size: 1.25em; }
+    .down {
+      position: absolute;
+      left: 50%;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      color: #fff;
+      text-decoration: none;
+      font-size: 32px;
+      line-height: 1;
+      text-shadow: 0 2px 8px rgba(107, 29, 63, 0.4);
+      padding: 8px;
+      animation: bobx 1.6s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes bobx {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -8px); }
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(40px, 8vw, 70px) var(--gutter);
+      text-align: center;
+    }
+
+    /* photo polaroids */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: clamp(20px, 4vw, 32px);
+    }
+    .card {
+      margin: 0;
+      background: #fff;
+      padding: 12px 12px 28px;
+      border-radius: 6px;
+      box-shadow: 0 10px 30px rgba(107, 29, 63, 0.22);
+      transform: rotate(var(--r, 0deg));
+      transition: transform 0.4s ease;
+    }
+    .card:hover, .card:focus-within { transform: rotate(0) scale(1.03); }
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* videos */
+    .vgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: clamp(16px, 3vw, 24px);
+    }
+    .vgrid video {
+      width: 100%;
+      max-height: min(70vh, 560px);
+      border-radius: 18px;
+      background: #000;
+      box-shadow: 0 10px 30px rgba(107, 29, 63, 0.25);
+      object-fit: contain;
+    }
+
+    footer {
+      padding: 40px var(--gutter) max(40px, env(safe-area-inset-bottom));
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(22px, 6vw, 30px);
+      color: #fff;
+      text-shadow: 0 3px 0 var(--pink-dark);
+    }
+
+    /* ---------- SMALL PHONES ---------- */
+    @media (max-width: 480px) {
+      .hero { min-height: 520px; }
+      .card { padding: 10px 10px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO: 3D cake scene -->
+  <header class="hero" id="hero">
+    <div class="msg">
+      <h1>Happy Birthday<span>Tahzeeb 💖</span></h1>
+    </div>
+    <a class="down" href="#gallery" aria-label="Scroll down">↓</a>
+  </header>
+
+  <main>
+    <!-- PHOTOS -->
+    <section class="section" id="gallery">
+      <div class="grid">
+        <figure class="card" style="--r: -3deg">
+          <img src="assets/1.png" alt="Birthday girl on a park bench" loading="lazy">
+        </figure>
+        <figure class="card" style="--r: 2deg">
+          <img src="assets/2.png" alt="Birthday girl in a garden gazebo" loading="lazy">
+        </figure>
+        <figure class="card" style="--r: -2deg">
+          <img src="assets/3.png" alt="Birthday girl smelling flowers" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="section" id="videos">
+      <div class="vgrid">
+        <video src="assets/WhatsApp%20Video%202026-11-24%20at%209.26.00%20PM%20(1).mp4" controls muted playsinline preload="auto"></video>
+        <video src="assets/WhatsApp%20Video%202026-11-24%20at%209.26.00%20PM.mp4" controls muted playsinline preload="auto"></video>
+        <video src="assets/WhatsApp%20Video%202026-11-24%20at%209.26.01%20PM.mp4" controls muted playsinline preload="auto"></video>
+        <video src="assets/WhatsApp%20Video%202026-11-24%20at%209.26.02%20PM%20(1).mp4" controls muted playsinline preload="auto"></video>
+        <video src="assets/WhatsApp%20Video%202026-11-24%20at%209.26.02%20PM.mp4" controls muted playsinline preload="auto"></video>
+      </div>
+    </section>
+  </main>
+
+  <footer>Love you, Tahzeeb 💖</footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const hero = document.getElementById('hero');
+
+    // ---------- Renderer / scene / camera ----------
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    hero.prepend(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    camera.position.set(0, 1.2, 9);
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xffb6c9, 1.6));
+    const key = new THREE.DirectionalLight(0xffffff, 2);
+    key.position.set(3, 6, 5);
+    scene.add(key);
+    const rim = new THREE.PointLight(0xff7aa8, 40, 20);
+    rim.position.set(-4, 2, 4);
+    scene.add(rim);
+
+    const mat = (color, opts = {}) =>
+      new THREE.MeshStandardMaterial({ color, roughness: 0.45, metalness: 0.05, ...opts });
+
+    // ---------- Cake ----------
+    const cake = new THREE.Group();
+    cake.position.y = -1.3;
+    scene.add(cake);
+
+    const plate = new THREE.Mesh(new THREE.CylinderGeometry(2.7, 2.7, 0.12, 64), mat(0xffffff, { roughness: 0.2 }));
+    cake.add(plate);
+
+    const layers = [
+      { r: 2.1, h: 0.9, y: 0.51, c: 0xffc2d9 },
+      { r: 1.6, h: 0.8, y: 1.36, c: 0xfff0f6 },
+      { r: 1.05, h: 0.6, y: 2.06, c: 0xff9cc0 },
+    ];
+    const frosting = mat(0xffffff, { roughness: 0.35 });
+    layers.forEach((L) => {
+      const top = L.y + L.h / 2;
+      const body = new THREE.Mesh(new THREE.CylinderGeometry(L.r, L.r, L.h, 64), mat(L.c));
+      body.position.y = L.y;
+      cake.add(body);
+
+      const rimMesh = new THREE.Mesh(new THREE.TorusGeometry(L.r, 0.09, 16, 80), frosting);
+      rimMesh.rotation.x = Math.PI / 2;
+      rimMesh.position.y = top;
+      cake.add(rimMesh);
+
+      for (let i = 0; i < 18; i++) {
+        const a = (i / 18) * Math.PI * 2;
+        const drip = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 16), frosting);
+        drip.position.set(Math.cos(a) * L.r, top - 0.06 - (i % 2) * 0.14, Math.sin(a) * L.r);
+        cake.add(drip);
+      }
+    });
+
+    // ---------- Candles ----------
+    const glowCanvas = document.createElement('canvas');
+    glowCanvas.width = glowCanvas.height = 64;
+    const gctx = glowCanvas.getContext('2d');
+    const grd = gctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grd.addColorStop(0, 'rgba(255,220,120,1)');
+    grd.addColorStop(0.3, 'rgba(255,160,60,0.6)');
+    grd.addColorStop(1, 'rgba(255,120,40,0)');
+    gctx.fillStyle = grd;
+    gctx.fillRect(0, 0, 64, 64);
+    const glowTex = new THREE.CanvasTexture(glowCanvas);
+
+    const candleColors = [0xff7eb6, 0xffffff, 0x9be7ff, 0xffe08a, 0xc7f5a0];
+    const candles = [];
+    const hitTargets = [];
+    const cakeTopY = 2.36;
+
+    for (let i = 0; i < 5; i++) {
+      const ang = (i / 5) * Math.PI * 2 + 0.3;
+      const g = new THREE.Group();
+      g.position.set(Math.cos(ang) * 0.5, cakeTopY, Math.sin(ang) * 0.5);
+      cake.add(g);
+
+      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.7, 20), mat(candleColors[i]));
+      body.position.y = 0.35;
+      g.add(body);
+
+      const flame = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffb020 }));
+      flame.scale.set(1, 1.8, 1);
+      flame.position.y = 0.92;
+      g.add(flame);
+
+      const glow = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: glowTex, color: 0xffd27a, transparent: true,
+        blending: THREE.AdditiveBlending, depthWrite: false,
+      }));
+      glow.scale.set(0.5, 0.5, 1);
+      glow.position.y = 0.92;
+      g.add(glow);
+
+      // invisible, larger hit area so candles are easy to tap (fingers are big)
+      const hit = new THREE.Mesh(
+        new THREE.SphereGeometry(0.28, 8, 8),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+      );
+      hit.position.y = 0.92;
+      g.add(hit);
+
+      const c = { lit: true, flame, glow, group: g, ph: Math.random() * 6 };
+      hit.userData.candle = c;
+      hitTargets.push(hit);
+      candles.push(c);
+    }
+
+    // ---------- Hearts (shape + extrude) ----------
+    const hs = new THREE.Shape();
+    hs.moveTo(0, -0.5);
+    hs.bezierCurveTo(-0.6, -0.1, -0.5, 0.5, 0, 0.25);
+    hs.bezierCurveTo(0.5, 0.5, 0.6, -0.1, 0, -0.5);
+    const heartGeo = new THREE.ExtrudeGeometry(hs, {
+      depth: 0.1, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05,
+      bevelSegments: 4, curveSegments: 24,
+    });
+    heartGeo.center();
+
+    const heartColors = [0xff4d7e, 0xff8fb1, 0xffffff, 0xff2e63];
+    const hearts = [];
+    for (let i = 0; i < 26; i++) {
+      const m = new THREE.Mesh(heartGeo, mat(heartColors[i % heartColors.length], { roughness: 0.3 }));
+      m.scale.setScalar(0.12 + Math.random() * 0.2);
+      m.position.set((Math.random() - 0.5) * 14, (Math.random() - 0.5) * 9, (Math.random() - 0.5) * 6 - 1);
+      m.userData = { vy: 0.1 + Math.random() * 0.2, spin: (Math.random() - 0.5) * 1.5, sway: Math.random() * 10 };
+      scene.add(m);
+      hearts.push(m);
+    }
+
+    // ---------- Balloons ----------
+    const balloonSpots = [
+      { x: -4.4, y: 1.6, z: -1.5, c: 0xff6b9a },
+      { x: 4.6, y: 2.2, z: -2.0, c: 0xffd166 },
+      { x: -5.0, y: -0.6, z: 0.5, c: 0x8ecae6 },
+      { x: 4.2, y: -1.2, z: 1.2, c: 0xcdb4db },
+      { x: -3.2, y: 3.2, z: -3.0, c: 0xb8f2e6 },
+    ];
+    const balloons = [];
+    balloonSpots.forEach((s, i) => {
+      const g = new THREE.Group();
+      const b = new THREE.Mesh(new THREE.SphereGeometry(0.42, 32, 32), mat(s.c, { roughness: 0.25 }));
+      b.scale.y = 1.15;
+      const knot = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.14, 12), mat(s.c));
+      knot.rotation.x = Math.PI;
+      knot.position.y = -0.52;
+      const string = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.55, 0), new THREE.Vector3(0, -1.8, 0)]),
+        new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 })
+      );
+      g.add(b, knot, string);
+      g.userData = { x: s.x, baseY: s.y, phase: i * 1.3 };
+      g.position.set(s.x, s.y, s.z);
+      scene.add(g);
+      balloons.push(g);
+    });
+
+    // ---------- Polaroid photos in 3D ----------
+    const loader = new THREE.TextureLoader();
+    const polaroids = [];
+    const photoSpots = [
+      { file: 'assets/1.png', x: -2.9, y: 0.6, z: 0.6, ry: 0.35, rz: -0.06 },
+      { file: 'assets/2.png', x: 2.9, y: 0.9, z: 0.2, ry: -0.35, rz: 0.06 },
+      { file: 'assets/3.png', x: -1.9, y: -2.4, z: 2.6, ry: 0.2, rz: 0.04 },
+    ];
+
+    photoSpots.forEach((spot, i) => {
+      const group = new THREE.Group();
+      const frame = new THREE.Mesh(
+        new THREE.PlaneGeometry(1, 1),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8, side: THREE.DoubleSide })
+      );
+      const photo = new THREE.Mesh(
+        new THREE.PlaneGeometry(1, 1),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6 })
+      );
+      photo.position.z = 0.01;
+      group.add(frame, photo);
+      group.userData = { x: spot.x, baseY: spot.y, ry: spot.ry, phase: i * 2, pop: -1 };
+      group.position.set(spot.x, spot.y, spot.z);
+      group.rotation.z = spot.rz;
+      scene.add(group);
+      polaroids.push(group);
+
+      loader.load(spot.file, (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        photo.material.map = tex;
+        photo.material.needsUpdate = true;
+        const aspect = tex.image.width / tex.image.height;
+        const maxD = 1.7;
+        const w = aspect >= 1 ? maxD : maxD * aspect;
+        const h = aspect >= 1 ? maxD / aspect : maxD;
+        photo.scale.set(w, h, 1);
+        // white polaroid border: thin on sides/top, thicker at the bottom
+        frame.scale.set(w + 0.22, h + 0.62, 1);
+        frame.position.y = -0.2;
+      });
+    });
+
+    // ---------- Particles / bursts ----------
+    const confettiCols = [0xff4d7e, 0xffd166, 0x8ecae6, 0xb8f2e6, 0xffffff, 0xcdb4db];
+    const confettiMats = confettiCols.map((c) =>
+      new THREE.MeshStandardMaterial({ color: c, side: THREE.DoubleSide, roughness: 0.5 })
+    );
+    const confettiGeo = new THREE.PlaneGeometry(0.14, 0.08);
+    const particles = [];
+
+    function burst(origin, count, asHearts) {
+      for (let i = 0; i < count; i++) {
+        const m = new THREE.Mesh(asHearts ? heartGeo : confettiGeo, confettiMats[i % confettiMats.length]);
+        if (asHearts) m.scale.setScalar(0.08);
+        m.position.copy(origin);
+        const a = Math.random() * Math.PI * 2;
+        const sp = 1.5 + Math.random() * 3;
+        m.userData = {
+          v: new THREE.Vector3(Math.cos(a) * sp * 0.6, 2 + Math.random() * 3, Math.sin(a) * sp * 0.5),
+          spin: new THREE.Vector3(Math.random() * 8, Math.random() * 8, Math.random() * 8),
+          life: 3 + Math.random() * 2,
+        };
+        scene.add(m);
+        particles.push(m);
+      }
+    }
+
+    // ---------- Candle interaction ----------
+    let blown = 0;
+    function blowOut(c) {
+      c.lit = false;
+      c.flame.visible = false;
+      c.glow.visible = false;
+      blown++;
+      const p = c.group.getWorldPosition(new THREE.Vector3());
+      p.y += 1;
+      burst(p, 10, true);
+
+      if (blown === candles.length) {
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => {
+            burst(new THREE.Vector3((Math.random() - 0.5) * 6, 4 + Math.random() * 2, 0), 60, Math.random() < 0.5);
+          }, i * 400);
+        }
+      }
+    }
+
+    const ray = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let mx = 0, my = 0;
+
+    // pointer coords relative to the 3D canvas (works with scrolling & touch)
+    function toCanvasCoords(e) {
+      const r = renderer.domElement.getBoundingClientRect();
+      return { nx: (e.clientX - r.left) / r.width, ny: (e.clientY - r.top) / r.height };
+    }
+
+    hero.addEventListener('pointermove', (e) => {
+      const { nx, ny } = toCanvasCoords(e);
+      mx = nx - 0.5;
+      my = ny - 0.5;
+    });
+
+    hero.addEventListener('pointerdown', (e) => {
+      const { nx, ny } = toCanvasCoords(e);
+      mouse.x = nx * 2 - 1;
+      mouse.y = -ny * 2 + 1;
+      ray.setFromCamera(mouse, camera);
+
+      const candleHits = ray.intersectObjects(hitTargets, false);
+      if (candleHits.length) {
+        const c = candleHits[0].object.userData.candle;
+        if (c.lit) blowOut(c);
+        return;
+      }
+
+      const photoHits = ray.intersectObjects(polaroids, true);
+      if (photoHits.length) {
+        let g = photoHits[0].object;
+        while (g.parent && !polaroids.includes(g)) g = g.parent;
+        g.userData.pop = 0;
+        return;
+      }
+
+      // tap anywhere else: little heart burst
+      const p = new THREE.Vector3();
+      ray.ray.at(6, p);
+      burst(p, 14, true);
+    });
+
+    // ---------- Responsive layout ----------
+    function onResize() {
+      const W = hero.clientWidth;
+      const H = hero.clientHeight;
+      const a = W / H;
+      renderer.setSize(W, H);
+      camera.aspect = a;
+      // portrait phones: pull the camera back so the whole cake + photos fit
+      camera.position.z = a < 1 ? 13 : 9;
+      camera.updateProjectionMatrix();
+
+      const narrow = a < 0.8;
+      const k = narrow ? 0.62 : 1;
+      cake.scale.setScalar(narrow ? 0.75 : 1);
+      polaroids.forEach((g) => { g.position.x = g.userData.x * k; });
+      balloons.forEach((b) => { b.position.x = b.userData.x * k; });
+    }
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    // ---------- Animation loop ----------
+    const clock = new THREE.Clock();
+
+    function animate() {
+      const dt = Math.min(clock.getDelta(), 0.05);
+      const t = clock.elapsedTime;
+
+      // gentle camera parallax
+      camera.position.x += (mx * 1.2 - camera.position.x) * 0.04;
+      camera.position.y += (1.2 - my * 1.0 - camera.position.y) * 0.04;
+      camera.lookAt(0, 0.4, 0);
+
+      cake.rotation.y = Math.sin(t * 0.5) * 0.35;
+
+      for (const c of candles) {
+        if (!c.lit) continue;
+        c.flame.scale.set(1 + Math.sin(t * 12 + c.ph) * 0.08, 1.8 + Math.sin(t * 9 + c.ph) * 0.2, 1);
+        c.glow.material.opacity = 0.8 + Math.sin(t * 10 + c.ph) * 0.15;
+      }
+
+      for (const h of hearts) {
+        h.position.y += h.userData.vy * dt;
+        h.position.x += Math.sin(t + h.userData.sway) * 0.2 * dt;
+        h.rotation.y += h.userData.spin * dt;
+        if (h.position.y > 6) h.position.y = -6;
+      }
+
+      balloons.forEach((b, i) => {
+        b.position.y = b.userData.baseY + Math.sin(t * 0.8 + b.userData.phase) * 0.25;
+        b.rotation.z = Math.sin(t * 0.6 + i) * 0.06;
+      });
+
+      polaroids.forEach((g, i) => {
+        g.position.y = g.userData.baseY + Math.sin(t * 0.9 + g.userData.phase) * 0.15;
+        g.rotation.y = g.userData.ry + Math.sin(t * 0.7 + i) * 0.08;
+        if (g.userData.pop >= 0) {
+          g.userData.pop += dt * 2;
+          const p = Math.min(g.userData.pop, 1);
+          g.scale.setScalar(1 + Math.sin(p * Math.PI) * 0.25);
+          if (g.userData.pop >= 1) {
+            g.userData.pop = -1;
+            g.scale.setScalar(1);
+          }
+        }
+      });
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        const u = p.userData;
+        u.v.y -= 7 * dt;
+        p.position.addScaledVector(u.v, dt);
+        p.rotation.x += u.spin.x * dt;
+        p.rotation.y += u.spin.y * dt;
+        u.life -= dt;
+        if (u.life <= 0) {
+          scene.remove(p);
+          particles.splice(i, 1);
+        }
+      }
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // ---------- Birthday song: starts automatically (Web Audio, no file needed) ----------
+    // Browsers only allow sound after the visitor's first tap/click/key press,
+    // so the song starts on page load if allowed, otherwise on the first interaction.
+    // [frequency Hz, beats] — "Happy Birthday" melody
+    const NOTES = [
+      [392, 0.5], [392, 0.5], [440, 1], [392, 1], [523, 1], [494, 2],
+      [392, 0.5], [392, 0.5], [440, 1], [392, 1], [587, 1], [523, 2],
+      [392, 0.5], [392, 0.5], [784, 1], [659, 1], [523, 1], [494, 1], [440, 1],
+      [698, 0.5], [698, 0.5], [659, 1], [523, 1], [587, 1], [523, 2],
+    ];
+    const BEAT = 0.6; // seconds per beat
+    const LOOP_LEN = NOTES.reduce((s, [, b]) => s + b * BEAT, 0);
+    const AC = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = AC ? new AC() : null;
+    let nextStart = 0;
+
+    function scheduleMelody(start) {
+      let t = start;
+      for (const [f, b] of NOTES) {
+        const d = b * BEAT;
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = 'triangle';
+        o.frequency.value = f;
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.3, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + d * 0.9);
+        o.start(t);
+        o.stop(t + d);
+        t += d;
+      }
+    }
+
+    // lookahead scheduler: keeps ~1s of melody queued and loops forever
+    function songScheduler() {
+      if (!audioCtx || audioCtx.state !== 'running') return;
+      if (nextStart < audioCtx.currentTime + 0.1) nextStart = audioCtx.currentTime + 0.1;
+      while (nextStart < audioCtx.currentTime + 1) {
+        scheduleMelody(nextStart);
+        nextStart += LOOP_LEN;
+      }
+    }
+
+    if (audioCtx) {
+      audioCtx.resume().catch(() => {});
+      setInterval(songScheduler, 250);
+
+      const unlockEvents = ['pointerdown', 'pointerup', 'keydown', 'touchend'];
+      const unlock = () => {
+        audioCtx.resume().catch(() => {});
+        unlockEvents.forEach((ev) => window.removeEventListener(ev, unlock));
+      };
+      unlockEvents.forEach((ev) => window.addEventListener(ev, unlock));
+    }
+
+    // ---------- Videos: play when in view or hovered; show ~10s frame, not black ----------
+    const vids = Array.from(document.querySelectorAll('.vgrid video'));
+    const inView = new Set();
+
+    vids.forEach((v) => {
+      const startAt = () => (v.duration > 12 ? 10 : Math.max(0, v.duration * 0.3));
+      const showFrame = () => {
+        const t = startAt();
+        if (t > 0) v.currentTime = t;
+      };
+      if (v.readyState >= 1) showFrame();
+      else v.addEventListener('loadedmetadata', showFrame, { once: true });
+
+      // after it ends, go back to the same nice frame (not the black first frame)
+      v.addEventListener('ended', showFrame);
+
+      v.addEventListener('mouseenter', () => v.play().catch(() => {}));
+      v.addEventListener('mouseleave', () => {
+        if (!inView.has(v)) v.pause();
+      });
+
+      // only one video plays at a time
+      v.addEventListener('play', () => {
+        vids.forEach((o) => { if (o !== v) o.pause(); });
+      });
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const v = e.target;
+        if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+          inView.add(v);
+          v.play().catch(() => {});
+        } else {
+          inView.delete(v);
+          if (!v.matches(':hover')) v.pause();
+        }
+      });
+    }, { threshold: [0, 0.6] });
+    vids.forEach((v) => io.observe(v));
+  </script>
+</body>
+</html>
